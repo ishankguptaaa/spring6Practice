@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -65,5 +66,22 @@ public class BeerServiceImpl implements BeerService {
   @Override
   public List<Beer> listBeers() {
     return new ArrayList<>(beerMap.values());
+  }
+
+  @Override
+  public Beer saveNewBeer(Beer beer) {
+    var newBeer= Beer.builder()
+        .id(UUID.randomUUID())
+        .version(1)
+        .createdDate(LocalDateTime.now())
+        .updatedDate(LocalDateTime.now())
+        .beerName(beer.getBeerName())
+        .beerStyle(beer.getBeerStyle())
+        .quantityOnHand(beer.getQuantityOnHand())
+        .upc(beer.getUpc())
+        .price(beer.getPrice())
+        .build();
+    beerMap.put(newBeer.getId(),newBeer);
+    return newBeer;
   }
 }

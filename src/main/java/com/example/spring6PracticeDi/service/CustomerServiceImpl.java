@@ -42,9 +42,9 @@ public class CustomerServiceImpl implements CustomerService {
         .updateDate(LocalDateTime.now())
         .build();
 
-    customerList.put(customer1.getId(),customer1);
-    customerList.put(customer2.getId(),customer2);
-    customerList.put(customer3.getId(),customer3);
+    customerList.put(customer1.getId(), customer1);
+    customerList.put(customer2.getId(), customer2);
+    customerList.put(customer3.getId(), customer3);
   }
 
   @Override
@@ -55,5 +55,18 @@ public class CustomerServiceImpl implements CustomerService {
   @Override
   public Customer getCustomerById(UUID id) {
     return customerList.get(id);
+  }
+
+  @Override
+  public Customer addNewCustomer(Customer customer) {
+    var savedCustomer = Customer.builder()
+        .id(UUID.randomUUID())
+        .version(1)
+        .name(customer.getName())
+        .createDate(LocalDateTime.now())
+        .updateDate(LocalDateTime.now())
+        .build();
+    customerList.put(savedCustomer.getId(), savedCustomer);
+    return savedCustomer;
   }
 }
