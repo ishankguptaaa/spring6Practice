@@ -18,7 +18,7 @@ public class BeerServiceImpl implements BeerService {
 
   public BeerServiceImpl() {
     beerMap = new HashMap<>();
-    Beer bear1 = Beer.builder()
+    var bear1 = Beer.builder()
         .id(UUID.randomUUID())
         .version(1)
         .beerName("Galaxy Cat")
@@ -29,7 +29,7 @@ public class BeerServiceImpl implements BeerService {
         .updatedDate(LocalDateTime.now())
         .build();
 
-    Beer bear2 = Beer.builder()
+    var bear2 = Beer.builder()
         .id(UUID.randomUUID())
         .version(1)
         .beerName("Uni Cat")
@@ -40,7 +40,7 @@ public class BeerServiceImpl implements BeerService {
         .updatedDate(LocalDateTime.now())
         .build();
 
-    Beer bear3 = Beer.builder()
+    var bear3 = Beer.builder()
         .id(UUID.randomUUID())
         .version(1)
         .beerName("Heto Cat")
